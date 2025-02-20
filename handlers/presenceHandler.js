@@ -1,29 +1,33 @@
 // handlers/presenceHandler.js
 
+const redis = require("../redisClient");
+
 module.exports = {
-  handleJoinTeam: (socket, io, data) => {
-    // data شامل teamId و userId است.
+  handleJoinTeam: async (socket, io, data) => {
     console.log(`کاربر ${data.userId} به تیم ${data.teamId} پیوست.`);
 
-    // قرار دادن کاربر در room مربوط به تیم
     socket.join(`team-${data.teamId}`);
 
-    // انتشار رویداد ورود کاربر به سایر کاربران تیم
+    // اضافه کردن کاربر به لیست کاربران آنلاین
+    await redis.sadd("online_users", data.userId);
+
     io.to(`team-${data.teamId}`).emit("user-joined", {
-      userId: data.userId
+      userId: data.userId,
+      onlineUsers: await redis.smembers("online_users"), // لیست کاربران آنلاین
     });
   },
 
-  handleLeaveTeam: (socket, io, data) => {
-    // data شامل teamId و userId است.
+  handleLeaveTeam: async (socket, io, data) => {
     console.log(`کاربر ${data.userId} از تیم ${data.teamId} خارج شد.`);
 
-    // خارج کردن کاربر از room مربوط به تیم
     socket.leave(`team-${data.teamId}`);
 
-    // انتشار رویداد خروج کاربر به سایر کاربران تیم
+    // حذف کاربر از لیست آنلاین‌ها
+    await redis.srem("online_users", data.userId);
+
     io.to(`team-${data.teamId}`).emit("user-left", {
-      userId: data.userId
+      userId: data.userId,
+      onlineUsers: await redis.smembers("online_users"),
     });
-  }
+  },
 };
