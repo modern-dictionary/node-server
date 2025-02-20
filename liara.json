@@ -1,0 +1,8 @@
+{
+  "app": "teamsmodern-dictionary",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  },
+  "disks": []
+}
