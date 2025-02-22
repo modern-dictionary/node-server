@@ -47,6 +47,6 @@ io.on("connection", async (socket) => {
 });
 
 // ** استارت سرور **
-server.listen(3000, () => {
+server.listen(3000, "0.0.0.0", () => {
   console.log("🚀 WebSocket Server روی پورت 3000 اجرا شد");
 });
