@@ -15,7 +15,7 @@ module.exports = {
     }
 
     // انتشار رویداد حرکت موس به سایر کاربران در room تیم
-    io.to(`team-${data.teamId}`).emit("mouse-move", {
+    io.emit("mouse-move", {
         userId: data.userId,
         position: data.position,
         color: userColors[data.userId]
