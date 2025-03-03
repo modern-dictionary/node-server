@@ -17,14 +17,16 @@ module.exports = {
     // انتشار رویداد حرکت موس به سایر کاربران در room تیم
     io.emit("mouse-move", {
         userId: data.userId,
+        userName: data.userName,
         position: data.position,
         color: userColors[data.userId]
     });
 
     console.log("sending mouse move", {
-      userId: data.userId,
-      position: data.position,
-      color: userColors[data.userId]  || getRandomColor()
+        userId: data.userId,
+        userName: data.userName,
+        position: data.position,
+        color: userColors[data.userId]  || getRandomColor()
     });
   }
 };
