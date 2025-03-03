@@ -11,7 +11,7 @@ module.exports = {
     // اضافه کردن کاربر به لیست کاربران آنلاین
     await redis.sadd("online_users", data.userId);
 
-    io.to(`team-${data.teamId}`).emit("user-joined", {
+    io.emit("user-joined", {
       userId: data.userId,
       onlineUsers: await redis.smembers("online_users"), // لیست کاربران آنلاین
     });
@@ -25,7 +25,7 @@ module.exports = {
     // حذف کاربر از لیست آنلاین‌ها
     await redis.srem("online_users", data.userId);
 
-    io.to(`team-${data.teamId}`).emit("user-left", {
+    io.emit("user-left", {
       userId: data.userId,
       onlineUsers: await redis.smembers("online_users"),
     });
