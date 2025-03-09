@@ -43,7 +43,7 @@ node server.js
 ## WebSocket Documentation
 For WebSocket integration, refer to (also you should change the route of [vue js sockets](https://github.com/modern-dictionary/main):
 ```
-http://localhost:3000/
+http://localhost:3000/ //only on local
 ```
 For the complete system documentation, visit:
 ```
