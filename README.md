@@ -37,7 +37,7 @@ touch .env
 # Add required environment variables in .env file
 
 # Start the application
-npm start
+node server.js
 ```
 
 ## WebSocket Documentation
