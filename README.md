@@ -32,8 +32,6 @@ cd your-repo
 # Install dependencies
 npm install
 
-# Copy environment variables
-touch .env
 # Add required environment variables in .env file
 
 # Start the application
