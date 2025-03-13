@@ -53,8 +53,7 @@ https://docs.modern-dictionary.com
 ## Deployment
 To deploy the service in production:
 ```bash
-npm run build
-npm run start:prod
+node server.js
 ```
 
 ## Contributing
